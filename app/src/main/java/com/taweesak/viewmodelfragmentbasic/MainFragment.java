@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Switch;
@@ -26,6 +27,7 @@ public class MainFragment extends Fragment {
     private ModelNumber modelNumber;
     int  selectId,choice ;
     double numA, numB;
+    ImageView imageView;
 
     RadioGroup radioGroup;
     RadioButton radioButton;
@@ -45,6 +47,7 @@ public class MainFragment extends Fragment {
 
         findView(view);
 
+        //รับค่าจาก ViewModel
         androidViewModel.getData().observe(getActivity(), new Observer<ModelNumber>() {
             @Override
             public void onChanged(ModelNumber modelNumber) {
@@ -57,6 +60,7 @@ public class MainFragment extends Fragment {
             }
         });
 
+        // ส่งค่าไป ViewModel
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,15 +86,19 @@ public class MainFragment extends Fragment {
         switch (modelNumber.choice){
             case 0:
                 textView.setText("Number minus is : " + String.format("%1.2f", modelNumber.getPlusNumber()));
+                imageView.setImageResource(R.drawable.plus);
                 break;
             case 1:
                 textView.setText("Number minus is : " + String.format("%1.2f", modelNumber.getMinusNumber()));
+                imageView.setImageResource(R.drawable.minus);
                 break;
             case 2:
                 textView.setText("Number multiply is : " + String.format("%1.2f", modelNumber.getMultiplyNumber()));
+                imageView.setImageResource(R.drawable.multiply);
                 break;
             case 3:
                 textView.setText("Number divide is : " + String.format("%1.2f", modelNumber.getDivideNumber()));
+                imageView.setImageResource(R.drawable.divide);
                 break;
         }
     }
@@ -100,6 +108,7 @@ public class MainFragment extends Fragment {
         editText1 = view.findViewById(R.id.editText1);
         editText2 = view.findViewById(R.id.editText2);
         button = view.findViewById(R.id.button);
+        imageView = view.findViewById(R.id.imageView);
         radioGroup = (RadioGroup) view.findViewById(R.id.raidoButton);
     }
 

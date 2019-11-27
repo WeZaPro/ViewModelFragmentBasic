@@ -44,5 +44,7 @@ public class ModelNumber {
         return numA/numB;
     }
 
-
+    /*public int getChoice() {
+        return choice;
+    }*/
 }
