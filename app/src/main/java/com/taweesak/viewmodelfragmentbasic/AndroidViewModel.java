@@ -23,7 +23,7 @@ public class AndroidViewModel extends androidx.lifecycle.AndroidViewModel {
     // รับค่าเข้่ามา
     void setNumber(ModelNumber item){
         number.setValue(item);
-        Toast.makeText(getApplication(),"Text is "+item,Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplication(),"Text is "+item,Toast.LENGTH_SHORT).show();
     }
 
     //ส่งค่าออกไป

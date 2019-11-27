@@ -2,11 +2,13 @@ package com.taweesak.viewmodelfragmentbasic;
 
 public class ModelNumber {
 
-    int numA,numB;
+    double numA,numB;
+    int choice;
 
-    public ModelNumber(int numA, int numB) {
+    public ModelNumber(double numA, double numB,int choice) {
         this.numA = numA;
         this.numB = numB;
+        this.choice = choice;
     }
 
     /*public int getNumA() {
@@ -26,19 +28,19 @@ public class ModelNumber {
     }*/
 
 
-    public int getPlusNumber(){
+    public double getPlusNumber(){
         return numA+numB;
     }
 
-    public int getMinusNumber(){
+    public double getMinusNumber(){
         return numA-numB;
     }
 
-    public int getMultiplyNumber(){
+    public double getMultiplyNumber(){
         return numA*numB;
     }
 
-    public int getDivideNumber(){
+    public double getDivideNumber(){
         return numA/numB;
     }
 

@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Switch;
 import android.widget.TextView;
 
 public class MainFragment extends Fragment {
@@ -23,9 +24,9 @@ public class MainFragment extends Fragment {
     Button button;
     AndroidViewModel androidViewModel;
     private ModelNumber modelNumber;
-    int numA, numB, selectId;
+    int  selectId,choice ;
+    double numA, numB;
 
-    int choice ;
     RadioGroup radioGroup;
     RadioButton radioButton;
 
@@ -47,11 +48,12 @@ public class MainFragment extends Fragment {
         androidViewModel.getData().observe(getActivity(), new Observer<ModelNumber>() {
             @Override
             public void onChanged(ModelNumber modelNumber) {
-                if (choice == 0) {
+                /*if (choice == 0) {
                     textView.setText("Number plus is " + modelNumber.getPlusNumber());
                 } else {
-                    textView.setText("Number plus is " + modelNumber.getMinusNumber());
-                }
+                    textView.setText("Number minus is " + modelNumber.getMinusNumber());
+                }*/
+                checkChoice(modelNumber);
             }
         });
 
@@ -62,10 +64,10 @@ public class MainFragment extends Fragment {
                 selectChoice();
 
                 try {
-                    numA = Integer.valueOf(editText1.getText().toString());
-                    numB = Integer.valueOf(editText2.getText().toString());
+                    numA = Double.parseDouble(editText1.getText().toString());
+                    numB = Double.parseDouble(editText2.getText().toString());
 
-                    modelNumber = new ModelNumber(numA, numB);
+                    modelNumber = new ModelNumber(numA, numB,choice);
                     androidViewModel.setNumber(modelNumber);
 
                 } catch (NumberFormatException e) {
@@ -73,8 +75,24 @@ public class MainFragment extends Fragment {
                 }
             }
         });
-
         return view;
+    }
+
+    private void checkChoice(ModelNumber modelNumber) {
+        switch (modelNumber.choice){
+            case 0:
+                textView.setText("Number minus is : " + String.format("%1.2f", modelNumber.getPlusNumber()));
+                break;
+            case 1:
+                textView.setText("Number minus is : " + String.format("%1.2f", modelNumber.getMinusNumber()));
+                break;
+            case 2:
+                textView.setText("Number multiply is : " + String.format("%1.2f", modelNumber.getMultiplyNumber()));
+                break;
+            case 3:
+                textView.setText("Number divide is : " + String.format("%1.2f", modelNumber.getDivideNumber()));
+                break;
+        }
     }
 
     private void findView(View view) {
@@ -90,11 +108,17 @@ public class MainFragment extends Fragment {
         radioButton = getActivity().findViewById(selectId);
 
         switch (radioButton.getId()) {
-            case R.id.zeroText:
+            case R.id.plus:
                 choice = 0;
                 break;
-            case R.id.oneText:
+            case R.id.minus:
                 choice = 1;
+                break;
+            case R.id.multiply:
+                choice = 2;
+                break;
+            case R.id.divide:
+                choice = 3;
                 break;
         }
     }
