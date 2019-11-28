@@ -11,16 +11,15 @@ import androidx.lifecycle.MutableLiveData;
 public class AndroidViewModel extends androidx.lifecycle.AndroidViewModel {
 
     MutableLiveData<ModelNumber> number;
-    private Drawable image;
 
     public AndroidViewModel(@NonNull Application application) {
         super(application);
         number = new MutableLiveData<ModelNumber>();
     }
 
-    ModelNumber getNumber() {
+    /*ModelNumber getNumber() {
         return number.getValue();
-    }
+    }*/
 
     // รับค่าเข้่ามา
     void setNumber(ModelNumber item){
@@ -32,14 +31,5 @@ public class AndroidViewModel extends androidx.lifecycle.AndroidViewModel {
     public LiveData<ModelNumber> getData(){
         return number;
     }
-
-    // Image
-    /*public Drawable getImage() {
-        return image;
-    }
-
-    public void setImage(Drawable image) {
-        this.image = image;
-    }*/
 
 }
